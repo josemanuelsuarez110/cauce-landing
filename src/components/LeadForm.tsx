@@ -81,10 +81,10 @@ export function LeadForm() {
   const err = (k: keyof FieldErrors) => errors[k];
   const describe = (k: keyof FieldErrors) => (err(k) ? `${uid}-${k}-err` : undefined);
   const inputClass = (k: keyof FieldErrors) =>
-    `mt-1 w-full rounded-md border bg-white px-3 py-2.5 text-base ${err(k) ? "border-danger" : "border-line"}`;
+    `mt-1 w-full rounded-lg border bg-slate-950 px-3 py-2.5 text-base text-white ${err(k) ? "border-danger" : "border-slate-700"}`;
 
   return (
-    <section id="lista-de-espera" aria-labelledby="lead-titulo" className="bg-ink text-white">
+    <section id="lista-de-espera" aria-labelledby="lead-titulo" className="border-y border-slate-800 bg-slate-950 text-white">
       <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:py-20">
         <div>
           <h2 id="lead-titulo" className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -95,7 +95,7 @@ export function LeadForm() {
           </p>
         </div>
 
-        <div className="bg-paper p-6 text-ink sm:p-8">
+        <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 text-white shadow-2xl shadow-black/30 sm:p-8">
           {status === "success" ? (
             <div role="status" className="flex items-start gap-3">
               <CircleCheck aria-hidden="true" className="mt-0.5 h-6 w-6 shrink-0 text-teal" />
@@ -163,7 +163,7 @@ export function LeadForm() {
               </div>
 
               <button type="submit" disabled={status === "sending"}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-teal px-6 py-3 text-base font-semibold text-white hover:bg-teal-deep disabled:opacity-70 sm:w-auto">
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-indigo-950/40 transition-colors hover:bg-indigo-500 disabled:opacity-70 sm:w-auto">
                 {status === "sending" ? (<><LoaderCircle aria-hidden="true" className="h-5 w-5 animate-spin" />Enviando…</>) : "Probar formulario"}
               </button>
             </form>

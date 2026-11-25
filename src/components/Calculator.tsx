@@ -65,8 +65,8 @@ function Field(props: {
           onChange={(e) => props.onChange(e.target.value)}
           aria-invalid={props.error ? true : undefined}
           aria-describedby={props.error ? `${hintId} ${errId}` : hintId}
-          className={`tabular w-full rounded-md border bg-white px-3 py-2.5 text-base ${
-            props.error ? "border-danger" : "border-line"
+          className={`tabular w-full rounded-lg border bg-slate-950 px-3 py-2.5 text-base text-white ${
+            props.error ? "border-danger" : "border-slate-700"
           }`}
         />
         {props.suffix ? (
@@ -131,7 +131,7 @@ export function Calculator() {
   const errors: Errors = outcome.ok ? {} : outcome.errors;
 
   return (
-    <section id="calculadora" aria-labelledby="calc-titulo" className="border-b border-line bg-mint/40">
+    <section id="calculadora" aria-labelledby="calc-titulo" className="border-b border-slate-800 bg-slate-900/40">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
         <h2 id="calc-titulo" className="max-w-2xl font-display text-3xl font-semibold tracking-tight sm:text-4xl">
           Proyecta cómo podría crecer tu dinero en pesos dominicanos.
@@ -163,7 +163,7 @@ export function Calculator() {
             </div>
           </div>
 
-          <div aria-live="polite" className="border border-ink bg-white p-6">
+          <div aria-live="polite" className="rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-2xl shadow-black/20">
             {outcome.ok ? (
               <>
                 <p className="text-sm text-muted">En el escenario base, en {years} {years === 1 ? "año" : "años"} tendrías</p>

@@ -24,18 +24,18 @@ export function LiveMetrics() {
   }, []);
 
   return (
-    <section aria-labelledby="metricas-titulo" className="border border-ink bg-white">
-      <div className="flex items-center justify-between border-b border-ink px-5 py-3">
+    <section aria-labelledby="metricas-titulo" className="rounded-2xl border border-slate-800 bg-slate-900/80 shadow-2xl shadow-black/20">
+      <div className="flex items-center justify-between border-b border-slate-800 px-5 py-4">
         <h2 id="metricas-titulo" className="text-sm font-semibold">
           Indicadores de ejemplo
         </h2>
         <span className="text-xs text-muted">Datos simulados</span>
       </div>
-      <dl className="divide-y divide-line">
+      <dl className="divide-y divide-slate-800">
         {metrics.map((m) => (
           <div key={m.id} className="flex items-baseline justify-between gap-4 px-5 py-4">
             <dt className="text-sm text-muted">{m.label}</dt>
-            <dd className="tabular font-display text-2xl font-semibold">{formatMetric(m.value, m.format)}</dd>
+            <dd className="tabular font-display text-2xl font-semibold text-white">{formatMetric(m.value, m.format)}</dd>
           </div>
         ))}
       </dl>

@@ -27,7 +27,7 @@ const FLOW = [
 
 export function Security() {
   return (
-    <section id="seguridad" aria-labelledby="seg-titulo" className="border-b border-line">
+    <section id="seguridad" aria-labelledby="seg-titulo" className="border-b border-slate-800">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
         <h2 id="seg-titulo" className="max-w-2xl font-display text-3xl font-semibold tracking-tight sm:text-4xl">
           Seguridad y claridad desde el diseño.
@@ -36,8 +36,8 @@ export function Security() {
         <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_1fr]">
           <ul className="space-y-8">
             {PILLARS.map(({ Icon, title, text }) => (
-              <li key={title} className="flex gap-4">
-                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center bg-teal text-white">
+              <li key={title} className="flex gap-4 rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-400">
                   <Icon aria-hidden="true" className="h-5 w-5" />
                 </span>
                 <div>
@@ -48,12 +48,12 @@ export function Security() {
             ))}
           </ul>
 
-          <div className="border border-ink bg-white p-6">
+          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-xl shadow-black/20">
             <h3 className="text-lg font-semibold">Cómo imaginamos una transferencia</h3>
             <ol className="mt-5 space-y-5">
               {FLOW.map((step, i) => (
                 <li key={step.title} className="flex gap-4">
-                  <span aria-hidden="true" className="tabular flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-teal text-sm font-semibold text-teal">
+                  <span aria-hidden="true" className="tabular flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-indigo-400/40 bg-indigo-500/10 text-sm font-semibold text-indigo-300">
                     {i + 1}
                   </span>
                   <div>
