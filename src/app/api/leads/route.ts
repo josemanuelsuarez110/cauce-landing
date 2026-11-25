@@ -117,3 +117,19 @@ export async function POST(req: NextRequest) {
 export function GET() {
   return respond({ ok: false, error: "Método no permitido." }, 405, { Allow: "POST" });
 }
+
+export function PUT() {
+  return respond({ ok: false, error: "Método no permitido." }, 405, { Allow: "POST" });
+}
+
+export function PATCH() {
+  return respond({ ok: false, error: "Método no permitido." }, 405, { Allow: "POST" });
+}
+
+export function DELETE() {
+  return respond({ ok: false, error: "Método no permitido." }, 405, { Allow: "POST" });
+}
+
+export function OPTIONS() {
+  return respond({ ok: false, error: "Método no permitido." }, 405, { Allow: "POST" });
+}
