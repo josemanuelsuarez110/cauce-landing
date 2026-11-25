@@ -1,19 +1,4 @@
-import { SYSTEM_STATUS, type SystemStatus } from "@/lib/metrics";
-
-const STATE_LABEL: Record<SystemStatus["state"], string> = {
-  operational: "Operativo",
-  degraded: "Degradado",
-  outage: "Caído",
-};
-
-const STATE_COLOR: Record<SystemStatus["state"], string> = {
-  operational: "bg-teal text-teal",
-  degraded: "bg-signal text-signal",
-  outage: "bg-danger text-danger",
-};
-
 export function Footer() {
-  const allOk = SYSTEM_STATUS.every((s) => s.state === "operational");
   return (
     <footer className="border-t border-line bg-paper">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
@@ -27,27 +12,22 @@ export function Footer() {
             </nav>
           </div>
 
-          <section aria-labelledby="estado-titulo" role="status">
+          <section aria-labelledby="estado-titulo">
             <h2 id="estado-titulo" className="text-sm font-semibold">
-              Estado del sistema: {allOk ? "todo funciona con normalidad" : "hay servicios afectados"}
+              Experiencia de demostración
             </h2>
-            <ul className="mt-3 space-y-2">
-              {SYSTEM_STATUS.map((s) => (
-                <li key={s.id} className="flex items-center gap-2 text-sm text-muted">
-                  <span aria-hidden="true" className={`pulse-dot relative inline-block h-2.5 w-2.5 rounded-full ${STATE_COLOR[s.state]}`} />
-                  {s.label}: <span className="font-medium text-ink">{STATE_LABEL[s.state]}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">
+              Los indicadores y flujos de esta página son ejemplos; no reflejan operaciones ni servicios en tiempo real.
+            </p>
           </section>
         </div>
 
         <div className="mt-10 space-y-4 border-t border-line pt-6 text-xs leading-relaxed text-muted">
           <p id="aviso-riesgo">
-            <strong className="text-ink">Aviso de riesgo.</strong> Ahorrar e invertir implica riesgos, incluida la pérdida de parte o todo el capital. Los rendimientos pasados o simulados no garantizan resultados futuros. Las cifras de esta página son ilustrativas.
+            <strong className="text-ink">Aviso de riesgo.</strong> Esta demostración está dirigida al público de República Dominicana. No confirma la disponibilidad de productos, alianzas ni autorización financiera local. Ahorrar e invertir implica riesgos, incluida la pérdida parcial o total del capital. Las cifras son ilustrativas y no garantizan resultados futuros.
           </p>
           <p id="privacidad">
-            <strong className="text-ink">Privacidad.</strong> Usamos los datos de la lista de espera solo para avisarte del acceso anticipado. No los vendemos ni los compartimos con terceros para publicidad.
+            <strong className="text-ink">Privacidad.</strong> El formulario de esta demostración no confirma una inscripción ni está conectado a una lista de espera o CRM. No ingreses datos personales.
           </p>
           <p>© {new Date().getFullYear()} Cauce. Todos los derechos reservados.</p>
         </div>

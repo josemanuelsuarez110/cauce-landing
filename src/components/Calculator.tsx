@@ -2,7 +2,7 @@
 
 import { useId, useMemo, useState } from "react";
 import { CALC_LIMITS, calculatorSchema, parseDecimalInput } from "@/lib/validations";
-import { TRADITIONAL_FEE_PCT, formatUsd, project, type Projection } from "@/lib/calc";
+import { TRADITIONAL_FEE_PCT, formatDop, project, type Projection } from "@/lib/calc";
 
 type FieldKey = "initial" | "monthly" | "annualRate" | "years";
 type Errors = Partial<Record<FieldKey, string>>;
@@ -103,7 +103,7 @@ function GrowthChart({ projection }: { projection: Projection }) {
   return (
     <svg
       role="img"
-      aria-label={`Crecimiento año a año. Con Cauce llegas a ${formatUsd(projection.finalCauce)} y con un proveedor tradicional a ${formatUsd(projection.finalTraditional)}.`}
+      aria-label={`Proyección ilustrativa año a año. El escenario base llega a ${formatDop(projection.finalCauce)} y el escenario con comisión a ${formatDop(projection.finalTraditional)}.`}
       viewBox={`0 0 ${W} ${H}`}
       className="h-auto w-full"
     >
@@ -121,8 +121,8 @@ function GrowthChart({ projection }: { projection: Projection }) {
 }
 
 export function Calculator() {
-  const [initial, setInitial] = useState("1000");
-  const [monthly, setMonthly] = useState("200");
+  const [initial, setInitial] = useState("25000");
+  const [monthly, setMonthly] = useState("5000");
   const [rate, setRate] = useState("6");
   const [years, setYears] = useState(10);
   const yearsId = useId();
@@ -134,17 +134,17 @@ export function Calculator() {
     <section id="calculadora" aria-labelledby="calc-titulo" className="border-b border-line bg-mint/40">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
         <h2 id="calc-titulo" className="max-w-2xl font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-          Mira cuánto crece tu dinero cuando no pagas comisiones escondidas.
+          Proyecta cómo podría crecer tu dinero en pesos dominicanos.
         </h2>
         <p className="mt-3 max-w-2xl text-muted">
-          Cambia los valores y compara con un proveedor tradicional que cobra {TRADITIONAL_FEE_PCT.toString().replace(".", ",")} % anual en comisiones.
+          Ajusta los montos en RD$ y compara dos escenarios ilustrativos. Uno considera una comisión hipotética de {TRADITIONAL_FEE_PCT.toString().replace(".", ",")} % anual.
         </p>
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,380px)_1fr]">
           <div className="space-y-5">
-            <Field label="Monto inicial (USD)" hint="Hasta 10.000.000. Puede ser 0." value={initial} onChange={setInitial} error={errors.initial} />
-            <Field label="Aporte mensual (USD)" hint="Hasta 1.000.000. Puede ser 0." value={monthly} onChange={setMonthly} error={errors.monthly} />
-            <Field label="Rendimiento anual estimado" hint="Entre 0 y 25. Es una hipótesis, no una promesa." value={rate} onChange={setRate} error={errors.annualRate} suffix="%" />
+            <Field label="Monto inicial (RD$)" hint="Hasta RD$10.000.000. Puede ser 0." value={initial} onChange={setInitial} error={errors.initial} />
+            <Field label="Aporte mensual (RD$)" hint="Hasta RD$1.000.000. Puede ser 0." value={monthly} onChange={setMonthly} error={errors.monthly} />
+            <Field label="Rendimiento anual estimado" hint="Entre 0 y 25 %. Es una hipótesis, no una promesa." value={rate} onChange={setRate} error={errors.annualRate} suffix="%" />
             <div>
               <label htmlFor={yearsId} className="flex justify-between text-sm font-semibold">
                 <span>Plazo</span>
@@ -166,27 +166,27 @@ export function Calculator() {
           <div aria-live="polite" className="border border-ink bg-white p-6">
             {outcome.ok ? (
               <>
-                <p className="text-sm text-muted">Con Cauce, en {years} {years === 1 ? "año" : "años"} tendrías</p>
-                <p className="tabular mt-1 font-display text-5xl font-semibold text-teal-deep">{formatUsd(outcome.projection.finalCauce)}</p>
+                <p className="text-sm text-muted">En el escenario base, en {years} {years === 1 ? "año" : "años"} tendrías</p>
+                <p className="tabular mt-1 font-display text-5xl font-semibold text-teal-deep">{formatDop(outcome.projection.finalCauce)}</p>
                 <dl className="mt-6 grid gap-4 sm:grid-cols-3">
                   <div>
                     <dt className="text-xs text-muted">Aportado por ti</dt>
-                    <dd className="tabular text-lg font-semibold">{formatUsd(outcome.projection.contributed)}</dd>
+                    <dd className="tabular text-lg font-semibold">{formatDop(outcome.projection.contributed)}</dd>
                   </div>
                   <div>
                     <dt className="text-xs text-muted">Rendimiento generado</dt>
-                    <dd className="tabular text-lg font-semibold">{formatUsd(outcome.projection.earnings)}</dd>
+                    <dd className="tabular text-lg font-semibold">{formatDop(outcome.projection.earnings)}</dd>
                   </div>
                   <div>
-                    <dt className="text-xs text-muted">Comisiones que no pagas</dt>
-                    <dd className="tabular text-lg font-semibold text-teal-deep">{formatUsd(outcome.projection.feesAvoided)}</dd>
+                    <dt className="text-xs text-muted">Diferencia estimada entre escenarios</dt>
+                    <dd className="tabular text-lg font-semibold text-teal-deep">{formatDop(outcome.projection.feesAvoided)}</dd>
                   </div>
                 </dl>
                 <div className="mt-6">
                   <GrowthChart projection={outcome.projection} />
                   <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-xs text-muted">
-                    <li><span aria-hidden="true" className="mr-1 inline-block h-0.5 w-5 bg-teal align-middle" />Cauce</li>
-                    <li><span aria-hidden="true" className="mr-1 inline-block h-0.5 w-5 bg-signal align-middle" />Proveedor tradicional ({formatUsd(outcome.projection.finalTraditional)})</li>
+                    <li><span aria-hidden="true" className="mr-1 inline-block h-0.5 w-5 bg-teal align-middle" />Escenario base</li>
+                    <li><span aria-hidden="true" className="mr-1 inline-block h-0.5 w-5 bg-signal align-middle" />Con comisión hipotética ({formatDop(outcome.projection.finalTraditional)})</li>
                     <li><span aria-hidden="true" className="mr-1 inline-block h-0.5 w-5 border-t-2 border-dashed border-muted align-middle" />Solo lo que aportas</li>
                   </ul>
                 </div>
@@ -195,7 +195,7 @@ export function Calculator() {
               <p className="py-10 text-muted">Corrige los campos marcados para ver tu proyección.</p>
             )}
             <p className="mt-6 border-t border-line pt-4 text-xs leading-relaxed text-muted">
-              Simulación ilustrativa con interés compuesto mensual. No garantiza resultados futuros. El rendimiento real puede ser menor y tu capital puede perder valor.
+              Cifras ilustrativas en pesos dominicanos (RD$), con interés compuesto mensual. La comisión es hipotética; no se garantizan resultados futuros. El rendimiento real puede ser menor y tu capital puede perder valor.
             </p>
           </div>
         </div>

@@ -27,7 +27,7 @@ export function LiveMetrics() {
     <section aria-labelledby="metricas-titulo" className="border border-ink bg-white">
       <div className="flex items-center justify-between border-b border-ink px-5 py-3">
         <h2 id="metricas-titulo" className="text-sm font-semibold">
-          Actividad de la red
+          Indicadores de ejemplo
         </h2>
         <span className="text-xs text-muted">Datos simulados</span>
       </div>

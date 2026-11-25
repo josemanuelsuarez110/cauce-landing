@@ -1,9 +1,7 @@
-import { Lock, ShieldCheck } from "lucide-react";
-
 const LINKS = [
   { href: "#calculadora", label: "Calculadora" },
   { href: "#seguridad", label: "Seguridad" },
-  { href: "#lista-de-espera", label: "Lista de espera" },
+  { href: "#lista-de-espera", label: "Recibir novedades" },
 ] as const;
 
 export function Navbar() {
@@ -27,25 +25,17 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <ul className="hidden items-center gap-3 text-xs text-muted lg:flex" aria-label="Indicadores de seguridad">
-            <li className="flex items-center gap-1">
-              <Lock aria-hidden="true" className="h-3.5 w-3.5 text-teal" /> Cifrado AES-256
-            </li>
-            <li className="flex items-center gap-1">
-              <ShieldCheck aria-hidden="true" className="h-3.5 w-3.5 text-teal" /> MFA obligatoria
-            </li>
-          </ul>
           <a
             href="#calculadora"
             className="hidden rounded-md border border-ink px-3 py-2 text-sm font-medium hover:bg-ink hover:text-white sm:inline-block"
           >
-            Calcular rendimiento
+            Probar calculadora
           </a>
           <a
             href="#lista-de-espera"
             className="rounded-md bg-teal px-3 py-2 text-sm font-semibold text-white hover:bg-teal-deep"
           >
-            Unirme a la lista
+            Recibir novedades
           </a>
 
           {/* Menú móvil sin JavaScript */}

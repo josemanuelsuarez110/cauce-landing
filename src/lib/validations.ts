@@ -54,7 +54,7 @@ export const leadSchema = z.strictObject({
     .pipe(z.string().max(500, "Máximo 500 caracteres."))
     .optional()
     .default(""),
-  consent: z.literal(true, { error: "Necesitamos tu consentimiento para contactarte." }),
+  consent: z.literal(true, { error: "Confirma que usas datos ficticios para probar este formulario." }),
   /** Honeypot: debe llegar vacío. Si trae datos, el servidor lo trata como bot. */
   website: z.string().max(200).optional().default(""),
 });

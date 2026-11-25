@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Cauce | Mueve y ahorra tu dinero con cada costo a la vista",
+  title: "Cauce | Ahorro y proyecciones en pesos dominicanos",
   description:
-    "Transferencias y ahorro sin comisiones ocultas. Calcula tu rendimiento y súmate a la lista de espera de Cauce.",
+    "Explora una propuesta fintech para República Dominicana y proyecta tus ahorros en pesos dominicanos (RD$). Cifras ilustrativas, sin promesas de rendimiento.",
   robots: { index: true, follow: true },
   referrer: "strict-origin-when-cross-origin",
 };
@@ -17,7 +17,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es">
+    <html lang="es-DO">
       <body className="min-h-screen antialiased">
         <a
           href="#contenido"

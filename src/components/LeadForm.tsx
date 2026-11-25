@@ -8,8 +8,8 @@ type Status = "idle" | "sending" | "success" | "error";
 type FieldErrors = Partial<Record<"name" | "email" | "interest" | "message" | "consent", string>>;
 
 const INTEREST_LABELS: Record<(typeof LEAD_INTERESTS)[number], string> = {
-  ahorro: "Ahorro que crece",
-  transferencias: "Transferencias sin comisiones ocultas",
+  ahorro: "Ahorro en pesos dominicanos",
+  transferencias: "Transferencias",
   inversion: "Inversión",
 };
 
@@ -88,10 +88,10 @@ export function LeadForm() {
       <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:py-20">
         <div>
           <h2 id="lead-titulo" className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-            Sé de los primeros en usar Cauce.
+            Prueba el formulario de interés de Cauce.
           </h2>
           <p className="mt-4 max-w-md leading-relaxed text-white/80">
-            Déjanos tu correo y te avisamos cuando abramos tu cupo. Solo te escribimos sobre el acceso, sin spam.
+            Este formulario es interactivo, pero no está conectado a una lista de espera. Usa datos ficticios; no ingreses información personal.
           </p>
         </div>
 
@@ -100,8 +100,8 @@ export function LeadForm() {
             <div role="status" className="flex items-start gap-3">
               <CircleCheck aria-hidden="true" className="mt-0.5 h-6 w-6 shrink-0 text-teal" />
               <div>
-                <p className="text-lg font-semibold">Listo, ya estás en la lista.</p>
-                <p className="mt-1 text-muted">Te escribiremos cuando tu cupo esté disponible.</p>
+                <p className="text-lg font-semibold">Prueba completada.</p>
+                <p className="mt-1 text-muted">Esta demostración no guarda una inscripción ni envía seguimiento.</p>
               </div>
             </div>
           ) : (
@@ -134,7 +134,7 @@ export function LeadForm() {
 
               <div>
                 <label htmlFor={`${uid}-message`} className="block text-sm font-semibold">
-                  Mensaje <span className="font-normal text-muted">(opcional)</span>
+                  Mensaje <span className="font-normal text-muted">(opcional; no incluyas datos personales)</span>
                 </label>
                 <textarea id={`${uid}-message`} name="message" rows={3} maxLength={1000}
                   aria-invalid={err("message") ? true : undefined} aria-describedby={describe("message")} className={inputClass("message")} />
@@ -152,7 +152,7 @@ export function LeadForm() {
                   <input id={`${uid}-consent`} name="consent" type="checkbox" className="mt-1 h-5 w-5 accent-teal"
                     aria-invalid={err("consent") ? true : undefined} aria-describedby={describe("consent")} />
                   <label htmlFor={`${uid}-consent`} className="text-sm leading-relaxed">
-                    Acepto que Cauce use mis datos para contactarme sobre el acceso anticipado. Puedo pedir que los borren cuando quiera.
+                    Confirmo que uso datos ficticios para probar este formulario.
                   </label>
                 </div>
                 {err("consent") ? <p id={`${uid}-consent-err`} role="alert" className="mt-1 text-sm font-medium text-danger">{err("consent")}</p> : null}
@@ -164,7 +164,7 @@ export function LeadForm() {
 
               <button type="submit" disabled={status === "sending"}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-teal px-6 py-3 text-base font-semibold text-white hover:bg-teal-deep disabled:opacity-70 sm:w-auto">
-                {status === "sending" ? (<><LoaderCircle aria-hidden="true" className="h-5 w-5 animate-spin" />Enviando…</>) : "Unirme a la lista de espera"}
+                {status === "sending" ? (<><LoaderCircle aria-hidden="true" className="h-5 w-5 animate-spin" />Enviando…</>) : "Probar formulario"}
               </button>
             </form>
           )}
