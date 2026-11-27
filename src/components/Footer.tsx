@@ -27,7 +27,7 @@ export function Footer() {
             <strong className="text-slate-300">Aviso de riesgo.</strong> Esta demostración está dirigida al público de República Dominicana. No confirma la disponibilidad de productos, alianzas ni autorización financiera local. Ahorrar e invertir implica riesgos, incluida la pérdida parcial o total del capital. Las cifras son ilustrativas y no garantizan resultados futuros.
           </p>
           <p id="privacidad">
-            <strong className="text-slate-300">Privacidad.</strong> El formulario de esta demostración no confirma una inscripción ni está conectado a una lista de espera o CRM. No ingreses datos personales.
+            <strong className="text-slate-300">Privacidad.</strong> El formulario no confirma una inscripción, no está conectado a una lista de espera o CRM y no usa cookies propias ni analítica. La solicitud puede procesar temporalmente una IP enmascarada y los datos ficticios enviados; no uses información personal real.
           </p>
           <p>© {new Date().getFullYear()} Cauce. Todos los derechos reservados.</p>
         </div>

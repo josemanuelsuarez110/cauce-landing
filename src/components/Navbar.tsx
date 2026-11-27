@@ -33,14 +33,14 @@ export function Navbar() {
           </a>
           <a
             href="#lista-de-espera"
-            className="rounded-lg bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-950/40 transition-colors hover:bg-indigo-500"
+            className="hidden rounded-lg bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-950/40 transition-colors hover:bg-indigo-500 sm:inline-block"
           >
             Recibir novedades
           </a>
 
           {/* Menú móvil sin JavaScript */}
           <details className="relative md:hidden">
-            <summary className="cursor-pointer list-none rounded-lg border border-slate-700 px-3 py-2 text-sm font-medium text-slate-200">
+            <summary aria-label="Abrir menú de navegación" className="cursor-pointer list-none rounded-lg border border-slate-700 px-3 py-2 text-sm font-medium text-slate-200">
               Menú
             </summary>
             <nav aria-label="Móvil" className="absolute right-0 mt-2 w-48 rounded-xl border border-slate-800 bg-slate-900 p-2 shadow-2xl">

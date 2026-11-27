@@ -167,7 +167,7 @@ export function Calculator() {
             {outcome.ok ? (
               <>
                 <p className="text-sm text-muted">En el escenario base, en {years} {years === 1 ? "año" : "años"} tendrías</p>
-                <p className="tabular mt-1 font-display text-5xl font-semibold text-teal-deep">{formatDop(outcome.projection.finalCauce)}</p>
+                <p className="tabular mt-1 break-words font-display text-4xl font-semibold text-teal-deep sm:text-5xl">{formatDop(outcome.projection.finalCauce)}</p>
                 <dl className="mt-6 grid gap-4 sm:grid-cols-3">
                   <div>
                     <dt className="text-xs text-muted">Aportado por ti</dt>

@@ -2,7 +2,7 @@
 
 import { useId, useState, type FormEvent } from "react";
 import { LoaderCircle, CircleCheck } from "lucide-react";
-import { LEAD_INTERESTS, leadSchema, type LeadInput } from "@/lib/validations";
+import { LEAD_INTERESTS, leadSchema } from "@/lib/validations";
 
 type Status = "idle" | "sending" | "success" | "error";
 type FieldErrors = Partial<Record<"name" | "email" | "interest" | "message" | "consent", string>>;
@@ -27,12 +27,12 @@ export function LeadForm() {
     const form = e.currentTarget;
     const data = new FormData(form);
 
-    const payload: LeadInput = {
+    const payload = {
       name: String(data.get("name") ?? ""),
       email: String(data.get("email") ?? ""),
-      interest: String(data.get("interest") ?? "") as LeadInput["interest"],
+      interest: String(data.get("interest") ?? ""),
       message: String(data.get("message") ?? ""),
-      consent: data.get("consent") === "on" ? true : (false as unknown as true),
+      consent: data.get("consent") === "on",
       website: String(data.get("website") ?? ""),
     };
 
@@ -92,6 +92,9 @@ export function LeadForm() {
           </h2>
           <p className="mt-4 max-w-md leading-relaxed text-white/80">
             Este formulario es interactivo, pero no está conectado a una lista de espera. Usa datos ficticios; no ingreses información personal.
+          </p>
+          <p className="mt-3 max-w-md text-sm leading-relaxed text-slate-400">
+            El envío prueba seguridad básica y procesa una IP enmascarada junto con los datos escritos. No usa cookies propias ni analítica.
           </p>
         </div>
 
