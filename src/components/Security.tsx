@@ -65,6 +65,26 @@ export function Security() {
             </ol>
           </div>
         </div>
+
+        <aside
+          aria-labelledby="estado-seguridad-titulo"
+          className="mt-10 rounded-2xl border border-amber-400/40 bg-amber-950/30 p-5 sm:p-6"
+        >
+          <h3 id="estado-seguridad-titulo" className="text-lg font-semibold text-amber-100">
+            Certificaciones y cifrado: estado no verificado
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-slate-200">
+            Para evitar confusiones, esta demostración no afirma contar con las siguientes certificaciones o controles:
+          </p>
+          <ul className="mt-4 space-y-2 text-sm leading-relaxed text-slate-200">
+            <li><strong className="text-white">PCI-DSS:</strong> certificación no confirmada.</li>
+            <li><strong className="text-white">ISO 27001:</strong> certificación no confirmada.</li>
+            <li><strong className="text-white">Cifrado AES-256:</strong> implementación no verificada; no se anuncia como característica disponible.</li>
+          </ul>
+          <p className="mt-4 text-sm leading-relaxed text-amber-100">
+            No interpretes estos nombres como certificados ni garantías de seguridad.
+          </p>
+        </aside>
       </div>
     </section>
   );
