@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { leadSchema } from "@/lib/validations";
 import { getClientIp, getLeadsRateLimiter } from "@/lib/rate-limit";
-import { describeError, logEvent, maskEmail } from "@/lib/logger";
+import { describeError, logEvent, maskEmail, maskIp } from "@/lib/logger";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -36,11 +36,12 @@ function isOriginAllowed(req: NextRequest): boolean {
 export async function POST(req: NextRequest) {
   const requestId = crypto.randomUUID();
   const ip = getClientIp(req.headers);
+  const loggedIp = maskIp(ip);
 
   try {
     // 1) Origen (mitiga CSRF desde otros sitios)
     if (!isOriginAllowed(req)) {
-      logEvent("warn", "leads.origin_rejected", { requestId, ip });
+      logEvent("warn", "leads.origin_rejected", { requestId, ip: loggedIp });
       return respond({ ok: false, error: "No se pudo procesar la solicitud." }, 403);
     }
 
@@ -52,7 +53,7 @@ export async function POST(req: NextRequest) {
     // 3) Rate limit por IP (antes de leer el cuerpo)
     const rl = await getLeadsRateLimiter().limit(ip);
     if (!rl.success) {
-      logEvent("warn", "leads.rate_limited", { requestId, ip });
+      logEvent("warn", "leads.rate_limited", { requestId, ip: loggedIp });
       return respond(
         { ok: false, error: "Demasiados intentos. Vuelve a intentarlo más tarde." },
         429,
@@ -84,7 +85,7 @@ export async function POST(req: NextRequest) {
     // 6) Honeypot: respuesta falsa de éxito, sin procesar nada
     const trap = (payload as Record<string, unknown>).website;
     if (typeof trap === "string" ? trap.trim() !== "" : trap !== undefined && trap !== null) {
-      logEvent("info", "leads.honeypot_triggered", { requestId, ip });
+      logEvent("info", "leads.honeypot_triggered", { requestId, ip: loggedIp });
       return respond({ ok: true }, 200);
     }
 
@@ -92,7 +93,7 @@ export async function POST(req: NextRequest) {
     const parsed = leadSchema.safeParse(payload);
     if (!parsed.success) {
       const fields = [...new Set(parsed.error.issues.map((i) => String(i.path[0] ?? "form")))];
-      logEvent("info", "leads.validation_failed", { requestId, ip, fields });
+      logEvent("info", "leads.validation_failed", { requestId, ip: loggedIp, fields });
       return respond({ ok: false, error: "Revisa los datos ingresados.", fields }, 422);
     }
 
@@ -103,17 +104,34 @@ export async function POST(req: NextRequest) {
       interest: lead.interest,
       email: maskEmail(lead.email),
       hasMessage: lead.message.length > 0,
+      ip: loggedIp,
     });
 
     return respond({ ok: true }, 200);
   } catch (err) {
     // Detalle solo en el log del servidor; el cliente recibe un mensaje genérico.
-    logEvent("error", "leads.unhandled_error", { requestId, ip, error: describeError(err) });
+    logEvent("error", "leads.unhandled_error", { requestId, ip: loggedIp, error: describeError(err) });
     return respond({ ok: false, error: "No pudimos procesar tu solicitud. Inténtalo de nuevo." }, 500);
   }
 }
 
 // Cualquier otro método: 405 genérico
 export function GET() {
+  return respond({ ok: false, error: "Método no permitido." }, 405, { Allow: "POST" });
+}
+
+export function PUT() {
+  return respond({ ok: false, error: "Método no permitido." }, 405, { Allow: "POST" });
+}
+
+export function PATCH() {
+  return respond({ ok: false, error: "Método no permitido." }, 405, { Allow: "POST" });
+}
+
+export function DELETE() {
+  return respond({ ok: false, error: "Método no permitido." }, 405, { Allow: "POST" });
+}
+
+export function OPTIONS() {
   return respond({ ok: false, error: "Método no permitido." }, 405, { Allow: "POST" });
 }

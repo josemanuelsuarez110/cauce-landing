@@ -19,3 +19,17 @@ export function maskEmail(email: string): string {
   const [user = "", domain = ""] = email.split("@");
   return `${user.slice(0, 1)}***@${domain}`;
 }
+
+/** Enmascara una IP antes de enviarla a registros o observabilidad. */
+export function maskIp(ip: string): string {
+  if (ip.includes(":")) {
+    const normalized = ip.toLowerCase().split("%")[0] ?? "";
+    const groups = normalized.split(":");
+    if (groups.length >= 4) return `${groups.slice(0, 4).join(":")}:****`;
+  }
+  if (/^\d{1,3}(?:\.\d{1,3}){3}$/.test(ip)) {
+    const groups = ip.split(".");
+    return `${groups[0]}.${groups[1]}.${groups[2]}.***`;
+  }
+  return "***";
+}

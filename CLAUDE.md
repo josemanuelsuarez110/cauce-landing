@@ -1,6 +1,7 @@
-# Cauce — Landing Fintech (Security by Design)
+# Cauce — Landing fintech para República Dominicana
 
 Landing de nivel empresarial. Next.js (App Router) + TypeScript estricto + Tailwind CSS 4 + Zod 4 + Lucide React.
+Experiencia en español dominicano, con montos expresados en pesos dominicanos (RD$).
 
 ## Comandos
 - `npm run dev` — desarrollo
@@ -32,7 +33,8 @@ Landing de nivel empresarial. Next.js (App Router) + TypeScript estricto + Tailw
 
 ## Accesibilidad y diseño
 - WCAG AA: contraste, foco visible, etiquetas en todos los campos, `aria-live` en estados de formularios, `prefers-reduced-motion` respetado.
-- Todo texto visible en español, tono claro y directo; los errores explican qué corregir.
+- Todo texto visible en español de República Dominicana, tono claro y directo; los errores explican qué corregir.
+- Usar el locale `es-DO` y la moneda DOP/RD$ en cifras locales. No inventar entidades aliadas, licencias, certificaciones, tarifas ni disponibilidad de servicios dominicanos.
 - Cifras de la calculadora y métricas son ilustrativas; mantener los avisos de riesgo visibles.
 
 ## Pendientes conocidos

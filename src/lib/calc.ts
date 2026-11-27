@@ -51,8 +51,12 @@ export function project(input: CalculatorInput): Projection | null {
   };
 }
 
-const usd = new Intl.NumberFormat("es", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+const dop = new Intl.NumberFormat("es-DO", {
+  style: "currency",
+  currency: "DOP",
+  maximumFractionDigits: 0,
+});
 
-export function formatUsd(value: number): string {
-  return usd.format(Math.round(value));
+export function formatDop(value: number): string {
+  return dop.format(Math.round(value));
 }

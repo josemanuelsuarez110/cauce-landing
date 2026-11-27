@@ -3,41 +3,41 @@ import { Fingerprint, Landmark, Radar } from "lucide-react";
 const PILLARS = [
   {
     Icon: Landmark,
-    title: "Tu dinero está separado del nuestro",
-    text: "Los fondos de clientes se guardan en cuentas segregadas, aparte del dinero de la empresa, y se conciliaron a diario.",
+    title: "Separación de fondos",
+    text: "El diseño contempla mantener los fondos de clientes separados de los de la empresa. Cualquier servicio real dependería de entidades y procesos confirmados.",
   },
   {
     Icon: Fingerprint,
-    title: "Verificamos que eres tú",
-    text: "Entrar y mover dinero exige un segundo factor: app de autenticación o llave de seguridad. Sin él, no sale nada.",
+    title: "Autenticación reforzada",
+    text: "Una experiencia financiera debería proteger el acceso y la autorización de movimientos con controles adecuados. Los mecanismos concretos dependerían de la implementación.",
   },
   {
     Icon: Radar,
-    title: "Vigilamos cada movimiento",
-    text: "Un sistema antifraude revisa montos, dispositivos y hábitos en tiempo real, y frena lo que no encaja contigo.",
+    title: "Prevención de fraude",
+    text: "El monitoreo de operaciones puede ayudar a identificar patrones atípicos. Sus capacidades dependerían de los sistemas que se integren.",
   },
 ] as const;
 
 const FLOW = [
-  { title: "Confirmas tu identidad", text: "Segundo factor en tu dispositivo de confianza." },
-  { title: "Revisamos el movimiento", text: "El antifraude compara la operación con tu comportamiento habitual." },
-  { title: "Ves el costo final", text: "Antes de aceptar, aparece cuánto recibe la otra persona." },
-  { title: "Liquidamos y te avisamos", text: "Recibes una notificación y el comprobante en tu cuenta." },
+  { title: "Confirmación de identidad", text: "El proceso podría incluir un segundo factor, según los mecanismos implementados." },
+  { title: "Revisión de la operación", text: "Los controles dependerían de los sistemas y proveedores que se integren." },
+  { title: "Costo antes de confirmar", text: "La propuesta prioriza presentar los costos con claridad antes de aceptar." },
+  { title: "Aviso del resultado", text: "Una experiencia real debería informar el estado de la operación y ofrecer un comprobante." },
 ] as const;
 
 export function Security() {
   return (
-    <section id="seguridad" aria-labelledby="seg-titulo" className="border-b border-line">
+    <section id="seguridad" aria-labelledby="seg-titulo" className="border-b border-slate-800">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
         <h2 id="seg-titulo" className="max-w-2xl font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-          Protegemos tu dinero antes, durante y después de cada transferencia.
+          Seguridad y claridad desde el diseño.
         </h2>
 
         <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_1fr]">
           <ul className="space-y-8">
             {PILLARS.map(({ Icon, title, text }) => (
-              <li key={title} className="flex gap-4">
-                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center bg-teal text-white">
+              <li key={title} className="flex gap-4 rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-400">
                   <Icon aria-hidden="true" className="h-5 w-5" />
                 </span>
                 <div>
@@ -48,12 +48,12 @@ export function Security() {
             ))}
           </ul>
 
-          <div className="border border-ink bg-white p-6">
-            <h3 className="text-lg font-semibold">Qué pasa cuando envías dinero</h3>
+          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-xl shadow-black/20">
+            <h3 className="text-lg font-semibold">Cómo imaginamos una transferencia</h3>
             <ol className="mt-5 space-y-5">
               {FLOW.map((step, i) => (
                 <li key={step.title} className="flex gap-4">
-                  <span aria-hidden="true" className="tabular flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-teal text-sm font-semibold text-teal">
+                  <span aria-hidden="true" className="tabular flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-indigo-400/40 bg-indigo-500/10 text-sm font-semibold text-indigo-300">
                     {i + 1}
                   </span>
                   <div>

@@ -2,14 +2,14 @@
 
 import { useId, useState, type FormEvent } from "react";
 import { LoaderCircle, CircleCheck } from "lucide-react";
-import { LEAD_INTERESTS, leadSchema, type LeadInput } from "@/lib/validations";
+import { LEAD_INTERESTS, leadSchema } from "@/lib/validations";
 
 type Status = "idle" | "sending" | "success" | "error";
 type FieldErrors = Partial<Record<"name" | "email" | "interest" | "message" | "consent", string>>;
 
 const INTEREST_LABELS: Record<(typeof LEAD_INTERESTS)[number], string> = {
-  ahorro: "Ahorro que crece",
-  transferencias: "Transferencias sin comisiones ocultas",
+  ahorro: "Ahorro en pesos dominicanos",
+  transferencias: "Transferencias",
   inversion: "Inversión",
 };
 
@@ -27,12 +27,12 @@ export function LeadForm() {
     const form = e.currentTarget;
     const data = new FormData(form);
 
-    const payload: LeadInput = {
+    const payload = {
       name: String(data.get("name") ?? ""),
       email: String(data.get("email") ?? ""),
-      interest: String(data.get("interest") ?? "") as LeadInput["interest"],
+      interest: String(data.get("interest") ?? ""),
       message: String(data.get("message") ?? ""),
-      consent: data.get("consent") === "on" ? true : (false as unknown as true),
+      consent: data.get("consent") === "on",
       website: String(data.get("website") ?? ""),
     };
 
@@ -81,27 +81,30 @@ export function LeadForm() {
   const err = (k: keyof FieldErrors) => errors[k];
   const describe = (k: keyof FieldErrors) => (err(k) ? `${uid}-${k}-err` : undefined);
   const inputClass = (k: keyof FieldErrors) =>
-    `mt-1 w-full rounded-md border bg-white px-3 py-2.5 text-base ${err(k) ? "border-danger" : "border-line"}`;
+    `mt-1 w-full rounded-lg border bg-slate-950 px-3 py-2.5 text-base text-white ${err(k) ? "border-danger" : "border-slate-700"}`;
 
   return (
-    <section id="lista-de-espera" aria-labelledby="lead-titulo" className="bg-ink text-white">
+    <section id="lista-de-espera" aria-labelledby="lead-titulo" className="border-y border-slate-800 bg-slate-950 text-white">
       <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:py-20">
         <div>
           <h2 id="lead-titulo" className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-            Sé de los primeros en usar Cauce.
+            Prueba el formulario de interés de Cauce.
           </h2>
           <p className="mt-4 max-w-md leading-relaxed text-white/80">
-            Déjanos tu correo y te avisamos cuando abramos tu cupo. Solo te escribimos sobre el acceso, sin spam.
+            Este formulario es interactivo, pero no está conectado a una lista de espera. Usa datos ficticios; no ingreses información personal.
+          </p>
+          <p className="mt-3 max-w-md text-sm leading-relaxed text-slate-400">
+            El envío prueba seguridad básica y procesa una IP enmascarada junto con los datos escritos. No usa cookies propias ni analítica.
           </p>
         </div>
 
-        <div className="bg-paper p-6 text-ink sm:p-8">
+        <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 text-white shadow-2xl shadow-black/30 sm:p-8">
           {status === "success" ? (
             <div role="status" className="flex items-start gap-3">
               <CircleCheck aria-hidden="true" className="mt-0.5 h-6 w-6 shrink-0 text-teal" />
               <div>
-                <p className="text-lg font-semibold">Listo, ya estás en la lista.</p>
-                <p className="mt-1 text-muted">Te escribiremos cuando tu cupo esté disponible.</p>
+                <p className="text-lg font-semibold">Prueba completada.</p>
+                <p className="mt-1 text-muted">Esta demostración no guarda una inscripción ni envía seguimiento.</p>
               </div>
             </div>
           ) : (
@@ -134,7 +137,7 @@ export function LeadForm() {
 
               <div>
                 <label htmlFor={`${uid}-message`} className="block text-sm font-semibold">
-                  Mensaje <span className="font-normal text-muted">(opcional)</span>
+                  Mensaje <span className="font-normal text-muted">(opcional; no incluyas datos personales)</span>
                 </label>
                 <textarea id={`${uid}-message`} name="message" rows={3} maxLength={1000}
                   aria-invalid={err("message") ? true : undefined} aria-describedby={describe("message")} className={inputClass("message")} />
@@ -152,7 +155,7 @@ export function LeadForm() {
                   <input id={`${uid}-consent`} name="consent" type="checkbox" className="mt-1 h-5 w-5 accent-teal"
                     aria-invalid={err("consent") ? true : undefined} aria-describedby={describe("consent")} />
                   <label htmlFor={`${uid}-consent`} className="text-sm leading-relaxed">
-                    Acepto que Cauce use mis datos para contactarme sobre el acceso anticipado. Puedo pedir que los borren cuando quiera.
+                    Confirmo que uso datos ficticios para probar este formulario.
                   </label>
                 </div>
                 {err("consent") ? <p id={`${uid}-consent-err`} role="alert" className="mt-1 text-sm font-medium text-danger">{err("consent")}</p> : null}
@@ -163,8 +166,8 @@ export function LeadForm() {
               </div>
 
               <button type="submit" disabled={status === "sending"}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-teal px-6 py-3 text-base font-semibold text-white hover:bg-teal-deep disabled:opacity-70 sm:w-auto">
-                {status === "sending" ? (<><LoaderCircle aria-hidden="true" className="h-5 w-5 animate-spin" />Enviando…</>) : "Unirme a la lista de espera"}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-indigo-950/40 transition-colors hover:bg-indigo-500 disabled:opacity-70 sm:w-auto">
+                {status === "sending" ? (<><LoaderCircle aria-hidden="true" className="h-5 w-5 animate-spin" />Enviando…</>) : "Probar formulario"}
               </button>
             </form>
           )}
