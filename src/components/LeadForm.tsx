@@ -101,7 +101,7 @@ export function LeadForm() {
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 text-white shadow-2xl shadow-black/30 sm:p-8">
           {status === "success" ? (
             <div role="status" className="flex items-start gap-3">
-              <CircleCheck aria-hidden="true" className="mt-0.5 h-6 w-6 shrink-0 text-teal" />
+              <CircleCheck aria-hidden="true" className="mt-0.5 h-6 w-6 shrink-0 text-emerald-400" />
               <div>
                 <p className="text-lg font-semibold">Prueba completada.</p>
                 <p className="mt-1 text-muted">Esta demostración no guarda una inscripción ni envía seguimiento.</p>
@@ -152,7 +152,7 @@ export function LeadForm() {
 
               <div>
                 <div className="flex items-start gap-3">
-                  <input id={`${uid}-consent`} name="consent" type="checkbox" className="mt-1 h-5 w-5 accent-teal"
+                  <input id={`${uid}-consent`} name="consent" type="checkbox" className="mt-1 h-5 w-5 accent-emerald-400"
                     aria-invalid={err("consent") ? true : undefined} aria-describedby={describe("consent")} />
                   <label htmlFor={`${uid}-consent`} className="text-sm leading-relaxed">
                     Confirmo que uso datos ficticios para probar este formulario.
@@ -166,7 +166,7 @@ export function LeadForm() {
               </div>
 
               <button type="submit" disabled={status === "sending"}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-indigo-950/40 transition-colors hover:bg-indigo-500 disabled:opacity-70 sm:w-auto">
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-emerald-950/40 transition-colors hover:bg-emerald-500 disabled:opacity-70 sm:w-auto">
                 {status === "sending" ? (<><LoaderCircle aria-hidden="true" className="h-5 w-5 animate-spin" />Enviando…</>) : "Probar formulario"}
               </button>
             </form>
