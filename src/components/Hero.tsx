@@ -14,7 +14,7 @@ export function Hero() {
             Explora una propuesta para ahorrar y hacer transferencias con más claridad. Consulta tus proyecciones en RD$ y revisa cada supuesto, sin promesas de rendimiento.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a href="#calculadora" className="rounded-xl bg-indigo-600 px-6 py-3 text-center text-base font-semibold text-white shadow-xl shadow-indigo-950/40 transition-colors hover:bg-indigo-500">
+            <a href="#calculadora" className="rounded-xl bg-emerald-600 px-6 py-3 text-center text-base font-semibold text-white shadow-xl shadow-emerald-950/40 transition-colors hover:bg-emerald-500">
               Probar calculadora en RD$
             </a>
             <a href="#lista-de-espera" className="rounded-xl border border-slate-700 bg-slate-900/50 px-6 py-3 text-center text-base font-semibold text-slate-200 transition-colors hover:bg-slate-800">
