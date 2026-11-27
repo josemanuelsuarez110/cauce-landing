@@ -9,7 +9,7 @@ export function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-800 bg-slate-950/85 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <a href="#contenido" className="flex items-center gap-2 font-display text-2xl font-semibold tracking-tight">
-          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6 text-indigo-400" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6 text-emerald-400" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
             <path d="M3 8c3 0 3 4 6 4s3-4 6-4 3 4 6 4" />
             <path d="M3 15c3 0 3 4 6 4s3-4 6-4 3 4 6 4" opacity="0.5" />
           </svg>
@@ -33,7 +33,7 @@ export function Navbar() {
           </a>
           <a
             href="#lista-de-espera"
-            className="hidden rounded-lg bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-950/40 transition-colors hover:bg-indigo-500 sm:inline-block"
+            className="hidden rounded-lg bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald-950/40 transition-colors hover:bg-emerald-500 sm:inline-block"
           >
             Recibir novedades
           </a>
