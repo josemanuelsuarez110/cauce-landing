@@ -37,7 +37,7 @@ export function Security() {
           <ul className="space-y-8">
             {PILLARS.map(({ Icon, title, text }) => (
               <li key={title} className="flex gap-4 rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
-                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-400">
+                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400">
                   <Icon aria-hidden="true" className="h-5 w-5" />
                 </span>
                 <div>
@@ -53,7 +53,7 @@ export function Security() {
             <ol className="mt-5 space-y-5">
               {FLOW.map((step, i) => (
                 <li key={step.title} className="flex gap-4">
-                  <span aria-hidden="true" className="tabular flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-indigo-400/40 bg-indigo-500/10 text-sm font-semibold text-indigo-300">
+                  <span aria-hidden="true" className="tabular flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-emerald-400/40 bg-emerald-500/10 text-sm font-semibold text-emerald-300">
                     {i + 1}
                   </span>
                   <div>
