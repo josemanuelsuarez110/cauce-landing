@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Cauce | Ahorro y proyecciones en pesos dominicanos",
+  title: "CAUCE | Claridad financiera en pesos dominicanos",
   description:
-    "Explora una propuesta fintech para República Dominicana y proyecta tus ahorros en pesos dominicanos (RD$). Cifras ilustrativas, sin promesas de rendimiento.",
+    "Conoce CAUCE, una experiencia conceptual de finanzas en pesos dominicanos. Explora proyecciones ilustrativas con costos y supuestos transparentes.",
   robots: { index: true, follow: true },
   referrer: "strict-origin-when-cross-origin",
 };
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f4f6f3",
+  themeColor: "#071522",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
