@@ -158,7 +158,7 @@ export function Calculator() {
                 step={1}
                 value={years}
                 onChange={(e) => setYears(Number.parseInt(e.target.value, 10))}
-                className="mt-2 w-full accent-teal"
+                className="mt-2 w-full accent-emerald-400"
               />
             </div>
           </div>
@@ -167,7 +167,7 @@ export function Calculator() {
             {outcome.ok ? (
               <>
                 <p className="text-sm text-muted">En el escenario base, en {years} {years === 1 ? "año" : "años"} tendrías</p>
-                <p className="tabular mt-1 break-words font-display text-4xl font-semibold text-teal-deep sm:text-5xl">{formatDop(outcome.projection.finalCauce)}</p>
+                <p className="tabular mt-1 break-words font-display text-4xl font-semibold text-emerald-400 sm:text-5xl">{formatDop(outcome.projection.finalCauce)}</p>
                 <dl className="mt-6 grid gap-4 sm:grid-cols-3">
                   <div>
                     <dt className="text-xs text-muted">Aportado por ti</dt>
@@ -179,13 +179,13 @@ export function Calculator() {
                   </div>
                   <div>
                     <dt className="text-xs text-muted">Diferencia estimada entre escenarios</dt>
-                    <dd className="tabular text-lg font-semibold text-teal-deep">{formatDop(outcome.projection.feesAvoided)}</dd>
+                    <dd className="tabular text-lg font-semibold text-emerald-400">{formatDop(outcome.projection.feesAvoided)}</dd>
                   </div>
                 </dl>
                 <div className="mt-6">
                   <GrowthChart projection={outcome.projection} />
                   <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-xs text-muted">
-                    <li><span aria-hidden="true" className="mr-1 inline-block h-0.5 w-5 bg-teal align-middle" />Escenario base</li>
+                    <li><span aria-hidden="true" className="mr-1 inline-block h-0.5 w-5 bg-emerald-400 align-middle" />Escenario base</li>
                     <li><span aria-hidden="true" className="mr-1 inline-block h-0.5 w-5 bg-signal align-middle" />Con comisión hipotética ({formatDop(outcome.projection.finalTraditional)})</li>
                     <li><span aria-hidden="true" className="mr-1 inline-block h-0.5 w-5 border-t-2 border-dashed border-muted align-middle" />Solo lo que aportas</li>
                   </ul>
